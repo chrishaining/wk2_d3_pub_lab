@@ -3,15 +3,18 @@ require("minitest/pride")
 require_relative('../pub')
 require_relative('../drink')
 require_relative('../customer')
-
+require('pry')
 class PubTest < MiniTest::Test
 
   def setup
     @drink1 = Drink.new("drink1", 1.50, 1.5)
     @drink2 = Drink.new("drink2", 2.50, 2.5)
     @drink3 = Drink.new("drink3", 5.0, 5)
+    # @drink4 = Drink.new("drink4", 10.00, 5)
 
+    #stock = []
     @pub1 = Pub.new("Jolly Farmer", 1000, [@drink1, @drink2, @drink3])
+
 
     @customer1 = Customer.new("Ted", 100, 19, 5)
     @customer2 = Customer.new("Bertha", 100, 15, 5)
@@ -60,5 +63,16 @@ class PubTest < MiniTest::Test
   def test_checks_customer_is_too_drunk__false
     assert_equal(false, @pub1.customer_is_too_drunk(@customer1))
   end
+
+  #Pub can have a stock (maybe a Hash?) to keep track the amount of drinks available (Hard! Might need to change the drinks array to a drinks hash). I was going in the wrong direction here, so I stopped. The solution is very different, and would have meant refactoring earlier code, which I didn't want to do (I wanted something that me and Ted had done, rather than just copying the solution).
+  # def test_creates_array_of_remaining_drink_prices
+  #   assert_equal([], @pub1.stock())
+  # end
+
+#Pub can have a stock_value method to check the total value of its drinks. After looking at the solution, I decided it was a waste of time trying to fix my attempt. My idea wasn't goig to work, and there was no point in just copying the solution.
+# def test_calculates_total_value_of_drinks_in_stock
+#assert_equal(9.00, @pub1.calculates_value_of_drinks_stock())
+# end
+
 
 end

@@ -3,6 +3,8 @@ require("minitest/pride")
 require_relative('../customer')
 require_relative('../drink')
 require_relative('../pub')
+require_relative('../food')
+
 require('pry')
 class CustomerTest < MiniTest::Test
 
@@ -10,6 +12,10 @@ class CustomerTest < MiniTest::Test
     @drink1 = Drink.new("drink1", 1.50, 1.5)
     @drink2 = Drink.new("drink2", 2.50, 2.5)
     @drink3 = Drink.new("drink3", 5.00, 5)
+
+    @food1 = Food.new("chicken", 1.50, 1)
+    @food2 = Food.new("cake", 5.00, 3)
+    @food3 = Food.new("pizza", 8.00, 5)
 
     @pub1 = Pub.new("Jolly Farmer", 1000, [@drink1, @drink2, @drink3])
 
@@ -52,5 +58,10 @@ class CustomerTest < MiniTest::Test
     assert_equal(10, @customer1.customer_gets_drunker_when_they_buy_drink(@drink3))
   end
   #the naming of this test seems overly long, but it was descriptive and helped us write the test and the implementation
+
+#Advanced extension to decrease customer drunkenness level if they eat food
+def test_customer_gets_less_drunk_with_food
+  assert_equal(10, @customer3.test_customer_gets_less_drunk_with_food(@food3))
+end
 
 end
